@@ -5,6 +5,9 @@
  */
 package proyectoia_v1.pkg1;
 
+import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 /**
  *
  * @author Kev
@@ -15,7 +18,9 @@ public class ProyectoIA_v11 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       mainFrame frame = new mainFrame();
+       frame.setVisible(true);
+       
     }
     
 }
