@@ -5,6 +5,9 @@
  */
 package proyectoia_v1.pkg1;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kev
@@ -14,8 +17,12 @@ public class mainFrame extends javax.swing.JFrame {
     /**
      * Creates new form mainFrame
      */
+    JLabel[][] matrizLabel;
     public mainFrame() {
         initComponents();
+        matrizLabel = new JLabel[17][11];
+        setMatriz();
+        
     }
 
     /**
@@ -1007,6 +1014,11 @@ public class mainFrame extends javax.swing.JFrame {
         jButton1.setBounds(310, 553, 150, 30);
 
         jButton2.setText("Conectar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(30, 560, 100, 23);
 
@@ -1015,8 +1027,17 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         sockets.servidor server = new sockets.servidor();
-        server.iniciar_conexion();
+        //server.iniciar_conexion();
+        JOptionPane.showMessageDialog(this, "Conexión entrante realizada", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+int x = 0;
+int y = 0;
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        matrizLabel[x][y].setText("hjhjhj");
+        x++;
+        if(x == 17){y++;x=0;}
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1051,6 +1072,207 @@ public class mainFrame extends javax.swing.JFrame {
                 new mainFrame().setVisible(true);
             }
         });
+    }
+    
+    private void setMatriz()
+    {
+        matrizLabel[0][0] = jLabel3;
+        matrizLabel[1][0] = jLabel2;
+        matrizLabel[2][0] = jLabel4;
+        matrizLabel[3][0] = jLabel5;
+        matrizLabel[4][0] = jLabel7;
+        matrizLabel[5][0] = jLabel6;
+        matrizLabel[6][0] = jLabel8;
+        matrizLabel[7][0] = jLabel9;
+        matrizLabel[8][0] = jLabel11;
+        matrizLabel[9][0] = jLabel10;
+        matrizLabel[10][0] = jLabel12;
+        matrizLabel[11][0] = jLabel13;
+        matrizLabel[12][0] = jLabel15;
+        matrizLabel[13][0] = jLabel14;
+        matrizLabel[14][0] = jLabel16;
+        matrizLabel[15][0] = jLabel18;
+        matrizLabel[16][0] = jLabel17;
+        
+        matrizLabel[0][1] = jLabel22;
+        matrizLabel[1][1] = jLabel19;
+        matrizLabel[2][1] = jLabel20;
+        matrizLabel[3][1] = jLabel21;
+        matrizLabel[4][1] = jLabel26;
+        matrizLabel[5][1] = jLabel23;
+        matrizLabel[6][1] = jLabel24;
+        matrizLabel[7][1] = jLabel25;
+        matrizLabel[8][1] = jLabel31;
+        matrizLabel[9][1] = jLabel27;
+        matrizLabel[10][1] = jLabel28;
+        matrizLabel[11][1] = jLabel29;
+        matrizLabel[12][1] = jLabel33;
+        matrizLabel[13][1] = jLabel30;
+        matrizLabel[14][1] = jLabel32;
+        matrizLabel[15][1] = jLabel35;
+        matrizLabel[16][1] = jLabel34;
+        
+        matrizLabel[0][2] = jLabel39;
+        matrizLabel[1][2] = jLabel36;
+        matrizLabel[2][2] = jLabel37;
+        matrizLabel[3][2] = jLabel38;
+        matrizLabel[4][2] = jLabel43;
+        matrizLabel[5][2] = jLabel40;
+        matrizLabel[6][2] = jLabel41;
+        matrizLabel[7][2] = jLabel42;
+        matrizLabel[8][2] = jLabel48;
+        matrizLabel[9][2] = jLabel44;
+        matrizLabel[10][2] = jLabel45;
+        matrizLabel[11][2] = jLabel46;
+        matrizLabel[12][2] = jLabel50;
+        matrizLabel[13][2] = jLabel47;
+        matrizLabel[14][2] = jLabel49;
+        matrizLabel[15][2] = jLabel52;
+        matrizLabel[16][2] = jLabel51;
+        
+        matrizLabel[0][3] = jLabel56;
+        matrizLabel[1][3] = jLabel53;
+        matrizLabel[2][3] = jLabel54;
+        matrizLabel[3][3] = jLabel55;
+        matrizLabel[4][3] = jLabel60;
+        matrizLabel[5][3] = jLabel57;
+        matrizLabel[6][3] = jLabel58;
+        matrizLabel[7][3] = jLabel59;
+        matrizLabel[8][3] = jLabel65;
+        matrizLabel[9][3] = jLabel61;
+        matrizLabel[10][3] = jLabel62;
+        matrizLabel[11][3] = jLabel63;
+        matrizLabel[12][3] = jLabel67;
+        matrizLabel[13][3] = jLabel64;
+        matrizLabel[14][3] = jLabel66;
+        matrizLabel[15][3] = jLabel69;
+        matrizLabel[16][3] = jLabel68;
+        
+        matrizLabel[0][4] = jLabel73;
+        matrizLabel[1][4] = jLabel70;
+        matrizLabel[2][4] = jLabel71;
+        matrizLabel[3][4] = jLabel72;
+        matrizLabel[4][4] = jLabel77;
+        matrizLabel[5][4] = jLabel74;
+        matrizLabel[6][4] = jLabel75;
+        matrizLabel[7][4] = jLabel76;
+        matrizLabel[8][4] = jLabel82;
+        matrizLabel[9][4] = jLabel78;
+        matrizLabel[10][4] = jLabel79;
+        matrizLabel[11][4] = jLabel80;
+        matrizLabel[12][4] = jLabel84;
+        matrizLabel[13][4] = jLabel81;
+        matrizLabel[14][4] = jLabel83;
+        matrizLabel[15][4] = jLabel86;
+        matrizLabel[16][4] = jLabel85;
+        
+        matrizLabel[0][5] = jLabel90;
+        matrizLabel[1][5] = jLabel87;
+        matrizLabel[2][5] = jLabel88;
+        matrizLabel[3][5] = jLabel89;
+        matrizLabel[4][5] = jLabel94;
+        matrizLabel[5][5] = jLabel91;
+        matrizLabel[6][5] = jLabel92;
+        matrizLabel[7][5] = jLabel93;
+        matrizLabel[8][5] = jLabel99;
+        matrizLabel[9][5] = jLabel95;
+        matrizLabel[10][5] = jLabel96;
+        matrizLabel[11][5] = jLabel97;
+        matrizLabel[12][5] = jLabel101;
+        matrizLabel[13][5] = jLabel98;
+        matrizLabel[14][5] = jLabel100;
+        matrizLabel[15][5] = jLabel103;
+        matrizLabel[16][5] = jLabel102;
+        
+        matrizLabel[0][6] = jLabel107;
+        matrizLabel[1][6] = jLabel104;
+        matrizLabel[2][6] = jLabel105;
+        matrizLabel[3][6] = jLabel106;
+        matrizLabel[4][6] = jLabel111;
+        matrizLabel[5][6] = jLabel108;
+        matrizLabel[6][6] = jLabel109;
+        matrizLabel[7][6] = jLabel110;
+        matrizLabel[8][6] = jLabel116;
+        matrizLabel[9][6] = jLabel112;
+        matrizLabel[10][6] = jLabel113;
+        matrizLabel[11][6] = jLabel114;
+        matrizLabel[12][6] = jLabel118;
+        matrizLabel[13][6] = jLabel115;
+        matrizLabel[14][6] = jLabel117;
+        matrizLabel[15][6] = jLabel120;
+        matrizLabel[16][6] = jLabel119;
+        
+        matrizLabel[0][7] = jLabel124;
+        matrizLabel[1][7] = jLabel121;
+        matrizLabel[2][7] = jLabel122;
+        matrizLabel[3][7] = jLabel123;
+        matrizLabel[4][7] = jLabel128;
+        matrizLabel[5][7] = jLabel125;
+        matrizLabel[6][7] = jLabel126;
+        matrizLabel[7][7] = jLabel127;
+        matrizLabel[8][7] = jLabel133;
+        matrizLabel[9][7] = jLabel129;
+        matrizLabel[10][7] = jLabel130;
+        matrizLabel[11][7] = jLabel131;
+        matrizLabel[12][7] = jLabel135;
+        matrizLabel[13][7] = jLabel132;
+        matrizLabel[14][7] = jLabel134;
+        matrizLabel[15][7] = jLabel137;
+        matrizLabel[16][7] = jLabel136;
+        
+        matrizLabel[0][8] = jLabel141;
+        matrizLabel[1][8] = jLabel138;
+        matrizLabel[2][8] = jLabel139;
+        matrizLabel[3][8] = jLabel140;
+        matrizLabel[4][8] = jLabel145;
+        matrizLabel[5][8] = jLabel142;
+        matrizLabel[6][8] = jLabel143;
+        matrizLabel[7][8] = jLabel144;
+        matrizLabel[8][8] = jLabel150;
+        matrizLabel[9][8] = jLabel146;
+        matrizLabel[10][8] = jLabel147;
+        matrizLabel[11][8] = jLabel148;
+        matrizLabel[12][8] = jLabel152;
+        matrizLabel[13][8] = jLabel149;
+        matrizLabel[14][8] = jLabel151;
+        matrizLabel[15][8] = jLabel154;
+        matrizLabel[16][8] = jLabel153;
+        
+        matrizLabel[0][9] = jLabel158;
+        matrizLabel[1][9] = jLabel155;
+        matrizLabel[2][9] = jLabel156;
+        matrizLabel[3][9] = jLabel157;
+        matrizLabel[4][9] = jLabel162;
+        matrizLabel[5][9] = jLabel159;
+        matrizLabel[6][9] = jLabel160;
+        matrizLabel[7][9] = jLabel161;
+        matrizLabel[8][9] = jLabel167;
+        matrizLabel[9][9] = jLabel163;
+        matrizLabel[10][9] = jLabel164;
+        matrizLabel[11][9] = jLabel165;
+        matrizLabel[12][9] = jLabel169;
+        matrizLabel[13][9] = jLabel166;
+        matrizLabel[14][9] = jLabel168;
+        matrizLabel[15][9] = jLabel171;
+        matrizLabel[16][9] = jLabel170;
+        
+        matrizLabel[0][10] = jLabel175;
+        matrizLabel[1][10] = jLabel172;
+        matrizLabel[2][10] = jLabel173;
+        matrizLabel[3][10] = jLabel174;
+        matrizLabel[4][10] = jLabel179;
+        matrizLabel[5][10] = jLabel176;
+        matrizLabel[6][10] = jLabel177;
+        matrizLabel[7][10] = jLabel178;
+        matrizLabel[8][10] = jLabel184;
+        matrizLabel[9][10] = jLabel180;
+        matrizLabel[10][10] = jLabel181;
+        matrizLabel[11][10] = jLabel182;
+        matrizLabel[12][10] = jLabel186;
+        matrizLabel[13][10] = jLabel183;
+        matrizLabel[14][10] = jLabel185;
+        matrizLabel[15][10] = jLabel188;
+        matrizLabel[16][10] = jLabel187;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
