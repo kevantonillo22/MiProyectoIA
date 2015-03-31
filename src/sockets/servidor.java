@@ -19,19 +19,60 @@ public class servidor {
     BufferedReader entrada;
     
     
-    public void iniciar(){
+    public boolean iniciar_conexion(){
+        boolean r = false;
         try{
             server = new ServerSocket(puerto);
             socket = new Socket();
             socket = server.accept();
+            r= true;
             
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return r;
+    }
+    
+    public void recept_message()
+    {
+        try
+        {
             entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String mensaje = entrada.readLine();
             System.out.println(mensaje);
-            salida = new DataOutputStream(socket.getOutputStream());
-            salida.writeUTF("adios mundo");
-            socket.close();
-        }catch(Exception e){
+            
         }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+    
+    public void send_message(String message)
+    {
+        try
+        {
+            salida = new DataOutputStream(socket.getOutputStream());
+            salida.writeUTF(message);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+    
+    public boolean cerrar_conexion()
+    {
+        boolean r = false;
+        try
+        {
+            socket.close();
+            r = true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return r;
     }
 }

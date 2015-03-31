@@ -16,11 +16,12 @@ public class ProyectoIA_v11 {
      */
     public static void main(String[] args) {
         
-        prolog.inteligencia i = new prolog.inteligencia();
-        i.iniciar();
+        //prolog.inteligencia i = new prolog.inteligencia();
+        //i.iniciar();
          //System.out.println(System.getProperty("java.library.path")) ;
-        //mainFrame frame = new mainFrame();
-       //frame.setVisible(true);
+        mainFrame frame = new mainFrame();
+        frame.setSize(800, 650);
+       frame.setVisible(true);
        
     }
     

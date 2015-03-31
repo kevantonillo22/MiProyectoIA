@@ -216,8 +216,15 @@ public class mainFrame extends javax.swing.JFrame {
         jLabel187 = new javax.swing.JLabel();
         jLabel188 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel189 = new javax.swing.JLabel();
+        jLabel190 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 500, 500));
         getContentPane().setLayout(null);
 
         jPanel1.setOpaque(false);
@@ -978,8 +985,38 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 30, 780, 452);
 
+        jLabel189.setText("Puerto");
+        getContentPane().add(jLabel189);
+        jLabel189.setBounds(140, 510, 46, 14);
+
+        jLabel190.setText("IP");
+        getContentPane().add(jLabel190);
+        jLabel190.setBounds(30, 510, 30, 14);
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(140, 530, 59, 20);
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(30, 530, 100, 20);
+
+        jButton1.setText("Esperar conexión");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(310, 553, 150, 30);
+
+        jButton2.setText("Conectar");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(30, 560, 100, 23);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        sockets.servidor server = new sockets.servidor();
+        server.iniciar_conexion();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1017,6 +1054,8 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -1116,7 +1155,9 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel186;
     private javax.swing.JLabel jLabel187;
     private javax.swing.JLabel jLabel188;
+    private javax.swing.JLabel jLabel189;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel190;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1206,5 +1247,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

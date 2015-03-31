@@ -18,13 +18,13 @@ public class inteligencia {
     
     public void iniciar()
     {
-        String t1 = "consult('nuevo.pl').";
-        //Query q1 = new Query(t1);
-        //System.out.println(t1 + " " + q1.hasSolution());
+        String t1 = "consult('src/nuevo.pl').";
+        Query q1 = new Query(t1);
+        System.out.println(t1 + " " + q1.hasSolution());
         
         String t2 = "progenitor(clara, X), progenitor(X, jose).";
         Query q2 = new Query(t2);
-        System.out.println(t2 + " " + q2.hasSolution());
+        System.out.println(t2 + "____ " + q2.hasSolution());
     }
     
 }
