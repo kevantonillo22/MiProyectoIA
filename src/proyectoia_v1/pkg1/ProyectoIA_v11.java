@@ -5,9 +5,6 @@
  */
 package proyectoia_v1.pkg1;
 
-import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-
 /**
  *
  * @author Kev
@@ -18,8 +15,12 @@ public class ProyectoIA_v11 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       mainFrame frame = new mainFrame();
-       frame.setVisible(true);
+        
+        prolog.inteligencia i = new prolog.inteligencia();
+        i.iniciar();
+         //System.out.println(System.getProperty("java.library.path")) ;
+        //mainFrame frame = new mainFrame();
+       //frame.setVisible(true);
        
     }
     
