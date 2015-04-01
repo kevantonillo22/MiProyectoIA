@@ -5,8 +5,10 @@
  */
 package proyectoia_v1.pkg1;
 
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import juego.tablero;
 
 /**
  *
@@ -18,10 +20,35 @@ public class mainFrame extends javax.swing.JFrame {
      * Creates new form mainFrame
      */
     JLabel[][] matrizLabel;
+    tablero map;
+    
     public mainFrame() {
         initComponents();
         matrizLabel = new JLabel[17][11];
         setMatriz();
+        
+    }
+    
+    
+    private void setPosicionMapa(String tipo, int x, int y)
+    {
+        matrizLabel[x][y].setOpaque(true);
+        if(tipo.equalsIgnoreCase("portero"))
+        {
+            matrizLabel[x][y].setBackground(Color.blue);
+        }
+        else if(tipo.equalsIgnoreCase("defensa"))
+        {
+            matrizLabel[x][y].setBackground(Color.GREEN);
+        }
+        else if(tipo.equalsIgnoreCase("delantero"))
+        {
+            matrizLabel[x][y].setBackground(Color.orange);
+        }
+        else if(tipo.equalsIgnoreCase("pelota"))
+        {
+            matrizLabel[x][y].setBackground(Color.WHITE);
+        }
         
     }
 
@@ -1029,12 +1056,35 @@ public class mainFrame extends javax.swing.JFrame {
         sockets.servidor server = new sockets.servidor();
         //server.iniciar_conexion();
         JOptionPane.showMessageDialog(this, "Conexión entrante realizada", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+        //CREAMOS EL MAPA Y SETEAMOS LAS POSICIONES DE LOS PRIMEROS JUGADORES
+        map = new tablero();
+        int x = 0;
+        int y = 5;
+        map.setJugador("portero", x, y);
+        this.setPosicionMapa("portero", x, y);
         
+        x=4;y=2;
+        map.setJugador("defensa", x, y);
+        this.setPosicionMapa("defensa", x, y);
+        x=4;y=8;
+        map.setJugador("defensa", x, y);
+        this.setPosicionMapa("defensa", x, y);
+        
+        x=12;y=3;
+        map.setJugador("delantero", x, y);
+        this.setPosicionMapa("delantero", x, y);
+        x=12;y=7;
+        map.setJugador("delantero", x, y);
+        this.setPosicionMapa("delantero", x, y);
+        
+        x=8;y=5;
+        map.setJugador("pelota", x, y);
+        this.setPosicionMapa("pelota", x, y);
     }//GEN-LAST:event_jButton1ActionPerformed
 int x = 0;
 int y = 0;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        matrizLabel[x][y].setText("hjhjhj");
+        matrizLabel[x][y].setText(x+","+y);
         x++;
         if(x == 17){y++;x=0;}
     }//GEN-LAST:event_jButton2ActionPerformed
