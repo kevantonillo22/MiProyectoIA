@@ -6,6 +6,9 @@
 package proyectoia_v1.pkg1;
 
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import juego.tablero;
@@ -32,24 +35,33 @@ public class mainFrame extends javax.swing.JFrame {
     
     private void setPosicionMapa(String tipo, int x, int y)
     {
-        matrizLabel[x][y].setOpaque(true);
+        //matrizLabel[x][y].setOpaque(true);
+        ImageIcon fot = null;
+        
         if(tipo.equalsIgnoreCase("portero"))
         {
-            matrizLabel[x][y].setBackground(Color.blue);
+            fot = new ImageIcon(getClass().getResource("/goomba.png"));
+            //matrizLabel[x][y].setBackground(Color.blue);
         }
         else if(tipo.equalsIgnoreCase("defensa"))
         {
-            matrizLabel[x][y].setBackground(Color.GREEN);
+            fot = new ImageIcon(getClass().getResource("/link.gif"));
+            //matrizLabel[x][y].setBackground(Color.GREEN);
         }
         else if(tipo.equalsIgnoreCase("delantero"))
         {
-            matrizLabel[x][y].setBackground(Color.orange);
+            fot = new ImageIcon(getClass().getResource("/samus.jpg"));
+            //matrizLabel[x][y].setBackground(Color.orange);
         }
         else if(tipo.equalsIgnoreCase("pelota"))
         {
-            matrizLabel[x][y].setBackground(Color.WHITE);
+            fot = new ImageIcon(getClass().getResource("/balon.png"));
+            //matrizLabel[x][y].setBackground(Color.WHITE);
         }
         
+        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(matrizLabel[x][y].getWidth(), matrizLabel[x][y].getHeight(), Image.SCALE_DEFAULT));
+        matrizLabel[x][y].setIcon(icono);
+            
     }
 
     /**
