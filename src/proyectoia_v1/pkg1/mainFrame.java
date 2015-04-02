@@ -11,6 +11,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import juego.XML;
 import juego.tablero;
 
 /**
@@ -33,30 +34,34 @@ public class mainFrame extends javax.swing.JFrame {
     }
     
     
-    private void setPosicionMapa(String tipo, int x, int y)
+    public void setPosicionMapa(String tipo, int x, int y)
     {
         //matrizLabel[x][y].setOpaque(true);
         ImageIcon fot = null;
         
-        if(tipo.equalsIgnoreCase("portero"))
+        if(tipo.contains("portero"))
         {
             fot = new ImageIcon(getClass().getResource("/goomba.png"));
             //matrizLabel[x][y].setBackground(Color.blue);
         }
-        else if(tipo.equalsIgnoreCase("defensa"))
+        else if(tipo.contains("defensa"))
         {
             fot = new ImageIcon(getClass().getResource("/link.gif"));
             //matrizLabel[x][y].setBackground(Color.GREEN);
         }
-        else if(tipo.equalsIgnoreCase("delantero"))
+        else if(tipo.contains("delantero"))
         {
             fot = new ImageIcon(getClass().getResource("/samus.jpg"));
             //matrizLabel[x][y].setBackground(Color.orange);
         }
-        else if(tipo.equalsIgnoreCase("pelota"))
+        else if(tipo.contains("pelota"))
         {
             fot = new ImageIcon(getClass().getResource("/balon.png"));
             //matrizLabel[x][y].setBackground(Color.WHITE);
+        }
+        else if(tipo.contains("Enemigo"))
+        {
+            fot = new ImageIcon(getClass().getResource("/bad.png"));
         }
         
         Icon icono = new ImageIcon(fot.getImage().getScaledInstance(matrizLabel[x][y].getWidth(), matrizLabel[x][y].getHeight(), Image.SCALE_DEFAULT));
@@ -1066,32 +1071,12 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         sockets.servidor server = new sockets.servidor();
-        //server.iniciar_conexion();
+        server.iniciar_conexion();
         JOptionPane.showMessageDialog(this, "Conexión entrante realizada", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
         //CREAMOS EL MAPA Y SETEAMOS LAS POSICIONES DE LOS PRIMEROS JUGADORES
         map = new tablero();
-        int x = 0;
-        int y = 5;
-        map.setJugador("portero", x, y);
-        this.setPosicionMapa("portero", x, y);
-        
-        x=4;y=2;
-        map.setJugador("defensa", x, y);
-        this.setPosicionMapa("defensa", x, y);
-        x=4;y=8;
-        map.setJugador("defensa", x, y);
-        this.setPosicionMapa("defensa", x, y);
-        
-        x=12;y=3;
-        map.setJugador("delantero", x, y);
-        this.setPosicionMapa("delantero", x, y);
-        x=12;y=7;
-        map.setJugador("delantero", x, y);
-        this.setPosicionMapa("delantero", x, y);
-        
-        x=8;y=5;
-        map.setJugador("pelota", x, y);
-        this.setPosicionMapa("pelota", x, y);
+        Thread juego = new Thread(new Hilos.game(this, map, server));
+        juego.start();
     }//GEN-LAST:event_jButton1ActionPerformed
 int x = 0;
 int y = 0;

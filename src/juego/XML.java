@@ -38,39 +38,44 @@ public class XML {
     int del2X;
     int del2Y;
     
-    public String generarXML(int porX, int porY, int def1X, int def1Y, int def2X, int def2Y, int del1X, int del1Y, int del2X, int del2Y)
+    public String generarXML(int porX, int porY, int def1X, int def1Y, int def2X, int def2Y, int del1X, int del1Y, int del2X, int del2Y, int ballX, int ballY)
     {
         String r = "<Posiciones>\n" +
-"	<Objeto>\n" +
-"		<Nombre>Portero</Nombre>\n" +
-"		<PosicionX>" + porX + "</PosicionX>\n" +
-"		<PosicionY>" + porY + "</PosicionY>\n" +
-"	</Objeto>\n" +
-"\n" +
-"	<Objeto>\n" +
-"		<Nombre>Defensa1</Nombre>\n" +
-"		<PosicionX>" + def1X + "</PosicionX>\n" +
-"		<PosicionY>" + def1Y + "</PosicionY>\n" +
-"	</Objeto>\n" +
-"\n" +
-"	<Objeto>\n" +
-"		<Nombre>Defensa2</Nombre>\n" +
-"		<PosicionX>" + def2X + "</PosicionX>\n" +
-"		<PosicionY>" + def2Y + "</PosicionY>\n" +
-"	</Objeto>\n" +
-"\n" +
-"	<Objeto>\n" +
-"		<Nombre>Delantero1</Nombre>\n" +
-"		<PosicionX>" + del1X + "</PosicionX>\n" +
-"		<PosicionY>" + del1Y + "</PosicionY>\n" +
-"	</Objeto>\n" +
-"\n" +
-"	<Objeto>\n" +
-"		<Nombre>Delantero2</Nombre>\n" +
-"		<PosicionX>" + del1X + "</PosicionX>\n" +
-"		<PosicionY>" + del1Y + "</PosicionY>\n" +
-"	</Objeto>\n" +
-"</Posiciones>";
+            "	<Objeto>\n" +
+            "		<Nombre>Portero</Nombre>\n" +
+            "		<PosicionX>" + porX + "</PosicionX>\n" +
+            "		<PosicionY>" + porY + "</PosicionY>\n" +
+            "	</Objeto>\n" +
+            "\n" +
+            "	<Objeto>\n" +
+            "		<Nombre>Defensa1</Nombre>\n" +
+            "		<PosicionX>" + def1X + "</PosicionX>\n" +
+            "		<PosicionY>" + def1Y + "</PosicionY>\n" +
+            "	</Objeto>\n" +
+            "\n" +
+            "	<Objeto>\n" +
+            "		<Nombre>Defensa2</Nombre>\n" +
+            "		<PosicionX>" + def2X + "</PosicionX>\n" +
+            "		<PosicionY>" + def2Y + "</PosicionY>\n" +
+            "	</Objeto>\n" +
+            "\n" +
+            "	<Objeto>\n" +
+            "		<Nombre>Delantero1</Nombre>\n" +
+            "		<PosicionX>" + del1X + "</PosicionX>\n" +
+            "		<PosicionY>" + del1Y + "</PosicionY>\n" +
+            "	</Objeto>\n" +
+            "\n" +
+            "	<Objeto>\n" +
+            "		<Nombre>Delantero2</Nombre>\n" +
+            "		<PosicionX>" + del1X + "</PosicionX>\n" +
+            "		<PosicionY>" + del1Y + "</PosicionY>\n" +
+            "	</Objeto>\n" +
+            "	<Objeto>\n" +
+            "		<Nombre>Balon</Nombre>\n" +
+            "		<PosicionX>" + ballX + "</PosicionX>\n" +
+            "		<PosicionY>" + ballY + "</PosicionY>\n" +
+            "	</Objeto>\n" +
+            "</Posiciones>";
         
         return r;
     }
