@@ -33,9 +33,9 @@ public class tablero {
     {
         int[] h = new int[10];
         
-        for (int i = 0; i < 16; i++) 
+        for (int i = 0; i <= 16; i++) 
         {
-            for (int j = 0; j < 10; j++) 
+            for (int j = 0; j <= 10; j++) 
             {
                 if(mapa[i][j] != null)
                 {
@@ -55,9 +55,9 @@ public class tablero {
     {
         int[] h = new int[2];
         
-        for (int i = 0; i < 16; i++) 
+        for (int i = 0; i <= 16; i++) 
         {
-            for (int j = 0; j < 10; j++) 
+            for (int j = 0; j <= 10; j++) 
             {
                 if(mapa[i][j] != null)
                 {
@@ -68,5 +68,33 @@ public class tablero {
         }
         
         return h;
+    }
+    
+    public void quitarEnemigo()
+    {
+        for (int i = 0; i <= 16; i++) 
+        {
+            for (int j = 0; j <= 10; j++) 
+            {
+                if(mapa[i][j] != null)
+                {
+                    if(mapa[i][j].tipo.contains("enemigo")){mapa[i][j]=null;}
+                }
+            }
+        }
+    }
+    
+    public void quitarBalon()
+    {
+        for (int i = 0; i <= 16; i++) 
+        {
+            for (int j = 0; j <= 10; j++) 
+            {
+                if(mapa[i][j] != null)
+                {
+                    if(mapa[i][j].tipo.contains("balon")){mapa[i][j]=null;}
+                }
+            }
+        }
     }
 }

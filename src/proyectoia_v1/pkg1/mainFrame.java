@@ -25,7 +25,8 @@ public class mainFrame extends javax.swing.JFrame {
      */
     JLabel[][] matrizLabel;
     tablero map;
-    
+    Thread juego;
+    Thread time;
     public mainFrame() {
         initComponents();
         matrizLabel = new JLabel[17][11];
@@ -33,6 +34,30 @@ public class mainFrame extends javax.swing.JFrame {
         
     }
     
+    public void cambioCancha()
+    {
+        //juego.
+    }
+    
+    public void actualizarMapa()
+    {
+        for (int i = 0; i <= 16; i++) 
+        {
+            for (int j = 0; j <= 10; j++) 
+            {
+                if(map.mapa[i][j] != null)
+                {
+                    this.setPosicionMapa(map.mapa[i][j].getTipo(), i, j);
+                }else
+                {
+                    matrizLabel[i][j].setIcon(null);
+                }
+                
+            }
+        }
+        
+        
+    }
     
     public void setPosicionMapa(String tipo, int x, int y)
     {
@@ -54,19 +79,19 @@ public class mainFrame extends javax.swing.JFrame {
             fot = new ImageIcon(getClass().getResource("/samus.jpg"));
             //matrizLabel[x][y].setBackground(Color.orange);
         }
-        else if(tipo.contains("pelota"))
+        else if(tipo.contains("balon"))
         {
             fot = new ImageIcon(getClass().getResource("/balon.png"));
             //matrizLabel[x][y].setBackground(Color.WHITE);
         }
-        else if(tipo.contains("Enemigo"))
+        else if(tipo.contains("enemigo"))
         {
             fot = new ImageIcon(getClass().getResource("/bad.png"));
         }
         
         Icon icono = new ImageIcon(fot.getImage().getScaledInstance(matrizLabel[x][y].getWidth(), matrizLabel[x][y].getHeight(), Image.SCALE_DEFAULT));
         matrizLabel[x][y].setIcon(icono);
-            
+        this.repaint();
     }
 
     /**
@@ -273,6 +298,9 @@ public class mainFrame extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel191 = new javax.swing.JLabel();
+        jLabel192 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 500, 500));
@@ -1066,24 +1094,164 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(30, 560, 100, 23);
 
+        jLabel191.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel191.setText("00:00");
+        getContentPane().add(jLabel191);
+        jLabel191.setBounds(630, 510, 140, 60);
+
+        jLabel192.setText("Puerto");
+        getContentPane().add(jLabel192);
+        jLabel192.setBounds(310, 510, 46, 14);
+
+        jTextField3.setText("9000");
+        getContentPane().add(jTextField3);
+        jTextField3.setBounds(310, 530, 59, 20);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sockets.servidor server = new sockets.servidor();
+        sockets.servidor server = new sockets.servidor(Integer.parseInt(jTextField3.getText()));
         server.iniciar_conexion();
         JOptionPane.showMessageDialog(this, "Conexión entrante realizada", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
         //CREAMOS EL MAPA Y SETEAMOS LAS POSICIONES DE LOS PRIMEROS JUGADORES
         map = new tablero();
-        Thread juego = new Thread(new Hilos.game(this, map, server));
+        
+        int x = 0;
+        int y = 5;
+        map.setJugador("portero", x, y);
+        //this.setPosicionMapa("portero", x, y);
+
+        x=4;y=2;
+        map.setJugador("defensa1", x, y);
+        //this.setPosicionMapa("defensa1", x, y);
+        x=4;y=8;
+        map.setJugador("defensa2", x, y);
+        //this.setPosicionMapa("defensa2", x, y);
+
+        x=12;y=3;
+        map.setJugador("delantero1", x, y);
+        //this.setPosicionMapa("delantero1", x, y);
+        x=12;y=7;
+        map.setJugador("delantero1", x, y);
+        //this.setPosicionMapa("delantero1", x, y);
+
+        x=8;y=5;
+        map.setJugador("balon", x, y);
+        //this.setPosicionMapa("balon", x, y);
+        
+        //envio de posiciones iniciales
+        int posicionesJugadores[]  = map.getPosicionesJugadores();
+        int posicionBalon[] = map.getBalonPosicion();
+        XML info = new XML();
+        String msn = info.generarXML(posicionesJugadores[0], posicionesJugadores[1], posicionesJugadores[2],
+                posicionesJugadores[3], posicionesJugadores[4], posicionesJugadores[5],
+                posicionesJugadores[6], posicionesJugadores[7], posicionesJugadores[8], posicionesJugadores[9], posicionBalon[0], posicionBalon[1]);
+        server.send_message(msn);
+        //System.out.println("Se envio mensaje " + msn);
+        //recibir información para colocar jugadores oponentes
+        String posicionesEnemigo = server.recept_message();
+        XML xml = new XML();
+        xml.leerXML(posicionesEnemigo);
+        
+        x=xml.porX;y=xml.porY;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        x=xml.def1X;y=xml.def1Y;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        x=xml.def2X;y=xml.def2Y;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        x=xml.del1X;y=xml.del1Y;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        x=xml.del2X;y=xml.del2Y;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        this.actualizarMapa();
+        juego = new Thread(new Hilos.gameServidor(this, map, server));
         juego.start();
+        
+        time = new Thread(new Hilos.tiempo(jLabel191, this));
+        time.start();
     }//GEN-LAST:event_jButton1ActionPerformed
-int x = 0;
-int y = 0;
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        matrizLabel[x][y].setText(x+","+y);
-        x++;
-        if(x == 17){y++;x=0;}
+        sockets.cliente cliente = new sockets.cliente(jTextField2.getText(), Integer.parseInt(jTextField1.getText()));
+        cliente.conectar();
+        JOptionPane.showMessageDialog(this, "Conexión entrante realizada", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+        //CREAMOS EL MAPA Y SETEAMOS LAS POSICIONES DE LOS PRIMEROS JUGADORES
+        map = new tablero();
+        
+        int x = 0;
+        int y = 5;
+        map.setJugador("portero", x, y);
+        //this.setPosicionMapa("portero", x, y);
+
+        x=4;y=2;
+        map.setJugador("defensa1", x, y);
+        //this.setPosicionMapa("defensa1", x, y);
+        x=4;y=8;
+        map.setJugador("defensa2", x, y);
+        //this.setPosicionMapa("defensa2", x, y);
+
+        x=12;y=3;
+        map.setJugador("delantero1", x, y);
+        //this.setPosicionMapa("delantero1", x, y);
+        x=12;y=7;
+        map.setJugador("delantero1", x, y);
+        //this.setPosicionMapa("delantero1", x, y);
+
+        x=8;y=5;
+        map.setJugador("balon", x, y);
+        //this.setPosicionMapa("balon", x, y);
+        
+        //envio de posiciones iniciales
+        int posicionesJugadores[]  = map.getPosicionesJugadores();
+        int posicionBalon[] = map.getBalonPosicion();
+        XML info = new XML();
+        String msn = info.generarXML(posicionesJugadores[0], posicionesJugadores[1], posicionesJugadores[2],
+                posicionesJugadores[3], posicionesJugadores[4], posicionesJugadores[5],
+                posicionesJugadores[6], posicionesJugadores[7], posicionesJugadores[8], posicionesJugadores[9], posicionBalon[0], posicionBalon[1]);
+        cliente.send_message(msn);
+        //System.out.println("Se envio mensaje " + msn);
+        //recibir información para colocar jugadores oponentes
+        String posicionesEnemigo = cliente.recept_message();
+        XML xml = new XML();
+        xml.leerXML(posicionesEnemigo);
+        
+        x=xml.porX;y=xml.porY;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        x=xml.def1X;y=xml.def1Y;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        x=xml.def2X;y=xml.def2Y;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        x=xml.del1X;y=xml.del1Y;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        x=xml.del2X;y=xml.del2Y;
+        map.setJugador("enemigo", x, y);
+        //this.setPosicionMapa("enemigo", x, y);
+        
+        this.actualizarMapa();
+        juego = new Thread(new Hilos.gameCliente(this, map, cliente));
+        juego.start();
+        
+        time = new Thread(new Hilos.tiempo(jLabel191, this));
+        time.start();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -1427,6 +1595,8 @@ int y = 0;
     private javax.swing.JLabel jLabel189;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel190;
+    private javax.swing.JLabel jLabel191;
+    private javax.swing.JLabel jLabel192;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1518,5 +1688,6 @@ int y = 0;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

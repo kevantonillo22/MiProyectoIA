@@ -6,6 +6,7 @@
 package sockets;
 import java.net.*;
 import java.io.*;
+import juego.XML;
 
 /**
  *
@@ -15,9 +16,13 @@ public class servidor {
     ServerSocket server;
     Socket socket;
     int puerto = 9000;
-    DataOutputStream salida;
+    PrintStream salida;
     BufferedReader entrada;
     
+    public servidor(int puerto)
+    {
+        this.puerto = puerto;
+    }
     
     public boolean iniciar_conexion(){
         boolean r = false;
@@ -33,27 +38,31 @@ public class servidor {
         return r;
     }
     
-    public void recept_message()
+    public String recept_message()
     {
+        String r = "";
         try
         {
             entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            
             String mensaje = entrada.readLine();
             System.out.println(mensaje);
-            
+            r = mensaje;
         }
         catch(Exception e)
         {
             System.out.println(e);
         }
+        
+        return r;
     }
     
     public void send_message(String message)
     {
         try
         {
-            salida = new DataOutputStream(socket.getOutputStream());
-            salida.writeUTF(message);
+            salida = new PrintStream(socket.getOutputStream());
+            salida.println(message);
         }
         catch(Exception e)
         {
