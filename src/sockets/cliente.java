@@ -6,6 +6,8 @@
 package sockets;
 import java.net.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,31 +15,57 @@ import java.io.*;
  */
 public class cliente {
     Socket cliente;
-    int puerto = 9000;
-    String ip = "127.0.0.1";
+    int puerto;
+    String ip;
     BufferedReader entrada, teclado;
     PrintStream salida;
     
-    public void inicio(){
-        try{
+    public cliente(String ip, int puerto)
+    {
+        this.puerto = puerto;
+        this.ip = ip;
+    }
+    
+    public void conectar(){
+        try {
             cliente = new Socket(ip, puerto);
+        } catch (IOException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
+    public String recept_message()
+    {
+        String msg = "";
+        try {
             entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-            teclado = new BufferedReader(new InputStreamReader(System.in));
-            String tec = teclado.readLine();
+            msg = entrada.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return msg;
+    }
+    
+    public void send_message(String tec)
+    {
+        try {
             salida = new PrintStream(cliente.getOutputStream());
             salida.println(tec);
-            String msg = entrada.readLine();
-            System.out.println(msg);
-            
+        } catch (IOException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void cerrar_conexion()
+    {
+        try {
             entrada.close();
             salida.close();
             teclado.close();
             cliente.close();
-            
-        }catch(Exception e){
+        } catch (IOException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }
     
 }
