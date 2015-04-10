@@ -51,7 +51,7 @@ public class tiempo implements Runnable{
                 
                 if(segundo == 5)
                 {
-                    JOptionPane.showMessageDialog(frame, "Se acabo el tiempo", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+                    //JOptionPane.showMessageDialog(frame, "Se acabo el tiempo", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (InterruptedException ex) {
                 Logger.getLogger(tiempo.class.getName()).log(Level.SEVERE, null, ex);

@@ -1071,8 +1071,12 @@ public class mainFrame extends javax.swing.JFrame {
         jLabel190.setText("IP");
         getContentPane().add(jLabel190);
         jLabel190.setBounds(30, 510, 30, 14);
+
+        jTextField1.setText("9000");
         getContentPane().add(jTextField1);
         jTextField1.setBounds(140, 530, 59, 20);
+
+        jTextField2.setText("127.0.0.1");
         getContentPane().add(jTextField2);
         jTextField2.setBounds(30, 530, 100, 20);
 
@@ -1133,7 +1137,7 @@ public class mainFrame extends javax.swing.JFrame {
         map.setJugador("delantero1", x, y);
         //this.setPosicionMapa("delantero1", x, y);
         x=12;y=7;
-        map.setJugador("delantero1", x, y);
+        map.setJugador("delantero2", x, y);
         //this.setPosicionMapa("delantero1", x, y);
 
         x=8;y=5;
@@ -1185,42 +1189,33 @@ public class mainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         sockets.cliente cliente = new sockets.cliente(jTextField2.getText(), Integer.parseInt(jTextField1.getText()));
         cliente.conectar();
-        JOptionPane.showMessageDialog(this, "Conexión entrante realizada", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Conexión saliente realizada con exito a la direccion" + jTextField2.getText() + ":" + jTextField1.getText(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
         //CREAMOS EL MAPA Y SETEAMOS LAS POSICIONES DE LOS PRIMEROS JUGADORES
         map = new tablero();
         
-        int x = 0;
+        int x = 16;
         int y = 5;
         map.setJugador("portero", x, y);
         //this.setPosicionMapa("portero", x, y);
 
-        x=4;y=2;
+        x=12;y=2;
         map.setJugador("defensa1", x, y);
         //this.setPosicionMapa("defensa1", x, y);
-        x=4;y=8;
+        x=12;y=8;
         map.setJugador("defensa2", x, y);
         //this.setPosicionMapa("defensa2", x, y);
 
-        x=12;y=3;
+        x=4;y=3;
         map.setJugador("delantero1", x, y);
         //this.setPosicionMapa("delantero1", x, y);
-        x=12;y=7;
-        map.setJugador("delantero1", x, y);
+        x=4;y=7;
+        map.setJugador("delantero2", x, y);
         //this.setPosicionMapa("delantero1", x, y);
 
         x=8;y=5;
         map.setJugador("balon", x, y);
         //this.setPosicionMapa("balon", x, y);
         
-        //envio de posiciones iniciales
-        int posicionesJugadores[]  = map.getPosicionesJugadores();
-        int posicionBalon[] = map.getBalonPosicion();
-        XML info = new XML();
-        String msn = info.generarXML(posicionesJugadores[0], posicionesJugadores[1], posicionesJugadores[2],
-                posicionesJugadores[3], posicionesJugadores[4], posicionesJugadores[5],
-                posicionesJugadores[6], posicionesJugadores[7], posicionesJugadores[8], posicionesJugadores[9], posicionBalon[0], posicionBalon[1]);
-        cliente.send_message(msn);
-        //System.out.println("Se envio mensaje " + msn);
         //recibir información para colocar jugadores oponentes
         String posicionesEnemigo = cliente.recept_message();
         XML xml = new XML();
@@ -1245,6 +1240,17 @@ public class mainFrame extends javax.swing.JFrame {
         x=xml.del2X;y=xml.del2Y;
         map.setJugador("enemigo", x, y);
         //this.setPosicionMapa("enemigo", x, y);
+        
+        //envio de posiciones iniciales
+        int posicionesJugadores[]  = map.getPosicionesJugadores();
+        int posicionBalon[] = map.getBalonPosicion();
+        XML info = new XML();
+        String msn = info.generarXML(posicionesJugadores[0], posicionesJugadores[1], posicionesJugadores[2],
+                posicionesJugadores[3], posicionesJugadores[4], posicionesJugadores[5],
+                posicionesJugadores[6], posicionesJugadores[7], posicionesJugadores[8], posicionesJugadores[9], posicionBalon[0], posicionBalon[1]);
+        cliente.send_message(msn);
+        //System.out.println("Se envio mensaje " + msn);
+        
         
         this.actualizarMapa();
         juego = new Thread(new Hilos.gameCliente(this, map, cliente));

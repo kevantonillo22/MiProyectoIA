@@ -61,7 +61,7 @@ public class tablero {
             {
                 if(mapa[i][j] != null)
                 {
-                    if(mapa[i][j].tipo.contains("pelota")){h[0] = i;h[1] = j;}
+                    if(mapa[i][j].tipo.contains("balon")){h[0] = i;h[1] = j;}
                     break;
                 }
             }

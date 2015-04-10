@@ -70,8 +70,8 @@ public class XML {
             "" +
             "<Objeto>" +
             "<Nombre>Delantero2</Nombre>" +
-            "<PosicionX>" + del1X + "</PosicionX>" +
-            "<PosicionY>" + del1Y + "</PosicionY>" +
+            "<PosicionX>" + del2X + "</PosicionX>" +
+            "<PosicionY>" + del2Y + "</PosicionY>" +
             "</Objeto>" +
             "<Objeto>" +
             "<Nombre>Balon</Nombre>" +
