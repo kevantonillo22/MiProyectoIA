@@ -18,6 +18,28 @@ public class tablero {
         mapa = new jugador[17][11];
     }
     
+    public void moverJugador(String tipo, int x, int y)
+    {
+        boolean parar = false;
+        for (int i = 0; i <= 16; i++) 
+        {
+            for (int j = 0; j <= 10; j++) 
+            {
+                if(mapa[i][j] != null)
+                {
+                    if(mapa[i][j].tipo.contains(tipo))
+                    {
+                        this.setJugador(tipo, x, y);
+                        mapa[i][j] = null;
+                        parar = true;
+                        break;
+                    }
+                }
+            }
+            if(parar){break;}
+        }
+    }
+    
     public void setJugador(String tipo, int x, int y)
     {
         jugador j = new jugador(tipo);

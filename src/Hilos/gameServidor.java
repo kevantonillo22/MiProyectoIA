@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import juego.XML;
 import juego.tablero;
+import prolog.inteligencia;
 import proyectoia_v1.pkg1.mainFrame;
 
 /**
@@ -42,6 +43,29 @@ public class gameServidor implements Runnable{
             
             //REALIZACION DE ACCIONES PARA MI TURNO (LOGICA PROLOG)
             
+            inteligencia in = new inteligencia();
+            int h[]  = map.getPosicionesJugadores();
+            int posXD1 = h[2];
+            int posYD1 = h[3];
+            
+            int posXD2 = h[4];
+            int posYD2 = h[5];
+            
+            int a[]  = map.getBalonPosicion();
+            
+            int posBalX = a[0];
+            int posBalY = a[1];
+            
+            boolean f = in.iniciar("se(" + posXD1 + "," + posYD1 + "," + posBalX + "," + posBalY + "," + posXD2 + "," + posYD2 + ").");
+            System.out.println("asdfasdfasfasfasdfasdfasdfasdfasdfasfasdfafsd " + f);
+            if(f == true)
+            {
+                map.moverJugador("defensa1", posBalX, posBalY - 1);
+            }
+            else
+            {
+                map.moverJugador("defensa2", posBalX, posBalY - 1);
+            }
             
             //setear las posiciones de los jugadores
             int posicionesJugadores[]  = map.getPosicionesJugadores();
@@ -94,6 +118,8 @@ public class gameServidor implements Runnable{
             {
                 //CAMBIAR DE CANCHA
             }
+            
+            
         }
     }
     

@@ -19,6 +19,8 @@ public class jugador {
         this.tipo = tipo;
     }
 
+    
+
     public String getTipo() {
         return tipo;
     }

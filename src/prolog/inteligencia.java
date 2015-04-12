@@ -16,15 +16,17 @@ import jpl.Query;
 
 public class inteligencia {
     
-    public void iniciar()
+    public boolean iniciar(String instruccion)
     {
-        String t1 = "consult('src/nuevo.pl').";
+        String t1 = "consult('src/holis.pl').";
         Query q1 = new Query(t1);
         System.out.println(t1 + " " + q1.hasSolution());
         
-        String t2 = "progenitor(clara, X), progenitor(X, jose).";
+        String t2 = instruccion;
         Query q2 = new Query(t2);
         System.out.println(t2 + "____ " + q2.hasSolution());
+        
+        return q2.hasSolution();
     }
     
 }
